@@ -19,7 +19,7 @@ jobs:
         run: echo '${{ secrets.DOCKER_PASSWORD }}' | docker login -u '${{ secrets.DOCKER_USERNAME }}' --password-stdin
 
       - name: Push Docker image to Docker Hub
-        run: docker push yourdockerhub/cd_docker_project:latest
+        run: docker push nutcaser/cd_docker_project:latest
 
   deploy:
     needs: build
@@ -32,7 +32,7 @@ jobs:
           username: '${{ secrets.SERVER_USER }}'
           key: '${{ secrets.SSH_PRIVATE_KEY }}'
           script: |
-            cd /path/to/project
+            cd cd_docker_project
             docker-compose pull
             docker-compose down
             docker-compose up -d
